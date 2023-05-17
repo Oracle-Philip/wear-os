@@ -1,21 +1,24 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ComponentActivity
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.android.gms.wearable.*
 
-class MainActivity : ComponentActivity() {
+@SuppressLint("RestrictedApi")
+class MainActivity : AppCompatActivity() {
     private val dataClient by lazy { Wearable.getDataClient(this) }
     private val messageClient by lazy { Wearable.getMessageClient(this) }
     private val capabilityClient by lazy { Wearable.getCapabilityClient(this) }
-    private val clientDataViewModel by viewModels<ClientDataViewModel>
+    private val clientDataViewModel by viewModels<ClientDataViewModel>()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
