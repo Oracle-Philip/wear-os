@@ -19,6 +19,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel
 import com.google.android.gms.wearable.Asset
@@ -40,12 +41,12 @@ class ClientDataViewModel(
     MessageClient.OnMessageReceivedListener,
     CapabilityClient.OnCapabilityChangedListener {
 
-    //private val _events = mutableStateListOf<Event>()
+    private val _events = mutableListOf<Event>()
 
     /**
      * The list of events from the clients.
      */
-    //val events: List<Event> = _events
+    val events: List<Event> = _events
 
     /**
      * The currently received image (if any), available to display.
@@ -95,21 +96,22 @@ class ClientDataViewModel(
     }
 
     override fun onMessageReceived(messageEvent: MessageEvent) {
-        /*_events.add(
+        Toast.makeText(getApplication(), "${messageEvent.data}", Toast.LENGTH_SHORT).show()
+        _events.add(
             Event(
                 title = R.string.message,
                 text = messageEvent.toString()
             )
-        )*/
+        )
     }
 
     override fun onCapabilityChanged(capabilityInfo: CapabilityInfo) {
-        /*_events.add(
-            Event(
-                title = R.string.capability_changed,
-                text = capabilityInfo.toString()
-            )
-        )*/
+//        _events.add(
+//            Event(
+//                title = R.string.capability_changed,
+//                text = capabilityInfo.toString()
+//            )
+//        )
     }
 
     /*private suspend fun loadBitmap(asset: Asset?): Bitmap? {
